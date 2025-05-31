@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>決勝時刻跑馬燈</title>
+    <link rel="stylesheet" href="https://www.enenlive.com/font.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css">
+    <style>
+        body {
+            background-color: rgba(0, 0, 0); /* 確保透明背景 */
+            margin: 0;
+            padding: 0;
+            font-family: 'GFF Latin', cwTeXYen, "Microsoft JhengHei", sans-serif; /* 設定字體 */
+            color: white; /* 文字顏色 */
+            overflow: hidden; /* 隱藏超出邊界的內容 */
+            display: flex;
+            justify-content: flex-start; /* 文字從左邊開始 */
+            align-items: flex-start;
+            height: 100vh; /* 確保內容佔滿視窗高度 */
+            width: 100vw; /* 確保內容佔滿視窗寬度 */
+        }
+
+        .marquee-container {
+            position: relative;
+            width: 100%;
+            height: 100%; /* 讓內容佔滿整個瀏覽器來源的高度 */
+            box-sizing: border-box;
+            padding: 20px; /* 內邊距，可調整 */
+        }
+
+        .marquee-content {
+            display: flex;
+            flex-direction: column; /* 垂直排列 */
+            transform: translateY(100vh); /* 內容從下方開始 */
+            animation: scroll-up 40s linear forwards; /* **動畫時間為 30s，並保持在最後狀態** */
+            opacity: 1; /* 確保滾動期間完全不透明 */
+        }
+
+        .thank-you-message {
+            position: absolute; /* 相對定位，使其可以覆蓋在 marquee-content 上 */
+            top: 50%; /* 垂直置中 */
+            left: 50%; /* 水平置中 */
+            transform: translate(-50%, -50%); /* 精確置中 */
+            font-size: 48px; /* 感謝語字體大小 */
+            font-weight: bold;
+            color: white;
+            opacity: 0; /* 初始隱藏 */
+            z-index: 10; /* 確保在其他內容之上 */
+            text-align: center;
+            width: 100%;
+            pointer-events: none; /* 避免擋住下層元素點擊事件 */
+        }
+
+        /* 控制感謝語顯示的動畫 */
+        @keyframes show-thank-you {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .line {
+            display: flex;
+            justify-content: space-between; /* 左右對齊 */
+            font-size: 24px; /* 調整字體大小 */
+            line-height: 1.6; /* 行高 */
+            width: 100%; /* 確保每行佔滿寬度 */
+            margin-bottom: 5px; /* 行間距 */
+        }
+
+        .role {
+            text-align: left;
+            width: 45%; /* 調整左右欄寬度比例 */
+            flex-shrink: 0;
+        }
+
+        .name {
+            text-align: right;
+            width: 45%; /* 調整左右欄寬度比例 */
+            flex-shrink: 0;
+        }
+
+        .single-line {
+            font-size: 24px;
+            line-height: 1.6;
+            margin-bottom: 5px;
+            text-align: center; /* 讓單行文字置中 */
+            width: 100%;
+        }
+
+        .single-line img { /* 針對圖片的樣式，確保置中 */
+            display: block; /* 讓圖片可以設定 margin auto */
+            margin: 10px auto 0 auto; /* 上方間距10px，左右自動置中，下方無間距 */
+            max-width: 90%; /* 圖片最大寬度限制 */
+            height: auto; /* 高度自動 */
+        }
+
+        @keyframes scroll-up {
+            0% {
+                transform: translateY(100vh); /* 從視窗底部開始，確保完全隱藏 */
+            }
+            100% {
+                /* 滾動到一個足夠遠的負值，確保所有內容完全滾出畫面 */
+                transform: translateY(-200%); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="marquee-container">
+        <div class="marquee-content" id="myMarquee">
+            <div class="title">決勝時刻</div>
+            <div class="single-line">
+                <img src="./end_files/決勝LOGO.png" alt="決勝時刻 Logo" style="height: 100px; margin-top: 10px;">
+            </div>
+
+            <div class="line"><span class="role">賽事統籌</span><span class="name">WUDAO</span></div>
+            <div class="line"><span class="role">節目企劃</span><span class="name">WUDAO</span></div>
+            <div class="line"><span class="role">製作統籌</span><span class="name">恩恩遊戲日常</span></div>
+            <div class="line"><span class="role">製播總監</span><span class="name">恩恩遊戲日常</span></div>
+            <div class="line"><span class="role">製播專案</span><span class="name">恩恩遊戲日常</span></div>
+            <div class="line"><span class="role">現場導播</span><span class="name">恩恩遊戲日常</span></div>
+            <div class="line"><span class="role">技術支援</span><span class="name">恩恩遊戲日常</span></div>
+            <div class="line"><span class="role">音效工程</span><span class="name">恩恩遊戲日常</span></div>
+            <br>
+            <div class="line"><span class="role">主播</span><span class="name">LINYU</span></div>
+            <div class="line"><span class="role">賽評</span><span class="name">希希</span></div>
+            <br>
+            <div class="line"><span class="role">視覺設計</span><span class="name">恩恩遊戲日常</span></div>
+            <div class="line"><span class="role">動畫製作</span><span class="name">恩恩遊戲日常</span></div>
+
+            <div class="single-line"></div>
+            <div class="single-line">特別感謝 CHAOS 廠商贊助</div>
+            <div class="single-line">
+                <img src="./end_files/MARK.png" alt="CHAOS Logo" style="height: 60px; margin-top: 10px;">
+            </div>
+            <div class="single-line">特別感謝 所有參賽選手</div>
+            <div class="single-line"></div>
+            <div class="single-line">出品 恩恩遊戲日常製播</div>
+            <div class="single-line">
+                <img src="./end_files/YTCHANNEL.png" alt="YouTube Channel Logo" style="height: 100px; margin-top: 10px;">
+            </div>
+            <div style="height: 50vh; min-height: 200px;"></div> 
+        </div>
+
+        <div class="thank-you-message" id="thankYouMessage">
+            THANK FOR WATCHING
+        </div>
+    </div>
+
+    <script>
+        const marqueeContent = document.getElementById('myMarquee');
+        const thankYouMessage = document.getElementById('thankYouMessage');
+
+        // 設定跑馬燈內容在滾動完畢後隱藏的延遲（與 CSS 動畫時間一致）
+        const marqueeHideDelay = 19 * 1000; // 30 秒後隱藏跑馬燈內容
+
+        // 設定 "THANK FOR WATCHING" 文字出現的總延遲
+        // 假設你希望在跑馬燈開始滾動後 35 秒出現 "THANK FOR WATCHING"
+        const thankYouShowDelay = 20 * 1000; // **這裡設定你想要的獨立延遲時間 (毫秒)**
+
+        // 1. 跑馬燈內容隱藏的計時器 (基於其自身的動畫結束時間)
+        marqueeContent.addEventListener('animationend', () => {
+             // 確保跑馬燈內容在動畫結束後隱藏
+             marqueeContent.style.display = 'none'; 
+        });
+
+
+        // 2. "THANK FOR WATCHING" 文字出現的獨立計時器
+        setTimeout(() => {
+            thankYouMessage.style.opacity = 1;
+            thankYouMessage.style.animation = 'show-thank-you 2s forwards'; // 淡入動畫 2 秒
+        }, thankYouShowDelay); // **按照設定的獨立延遲時間觸發**
+
+    </script>
+</body>
+</html>
